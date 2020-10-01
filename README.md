@@ -1,4 +1,4 @@
-﻿1.	Create a default console application.
+﻿1.	Create a default console application. Make sure that it is .net framework rather than a console app.
 2.	Then, inside the Main function, add the code (you would have to change the path according to the username of your system.):
 
 var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\phototest.tif";

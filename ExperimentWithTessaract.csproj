@@ -218,7 +218,11 @@
   <ItemGroup>
     <Content Include="Delta.png" />
     <Content Include="Hyatt_KOP.JPG" />
+    <Content Include="nyc_2.jpg" />
     <Content Include="phototest.tif" />
+    <Content Include="waffleHouse.jpg" />
+    <Content Include="Walmart.jpg" />
+    <Content Include="Walmart_hand.tif" />
     <Content Include="x64\liblept171.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

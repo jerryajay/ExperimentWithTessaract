@@ -14,7 +14,11 @@ namespace ExperimentWithTessaract
         {
             //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\phototest.tif";
             //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Hyatt_KOP.JPG";
-            var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Delta.png";
+            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Delta.png";
+            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\nyc_2.jpg";
+            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\waffleHouse.jpg";
+            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Walmart.jpg";
+            var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Walmart_hand.tif";
             if (args.Length > 0)
             {
                 testImagePath = args[0];
