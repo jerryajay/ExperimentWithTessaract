@@ -55,6 +55,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="README.md" />
     <None Include="tessdata\afr.traineddata" />
     <None Include="tessdata\amh.traineddata" />
     <None Include="tessdata\ara.cube.bigrams" />
@@ -215,6 +216,8 @@
     <None Include="tessdata\yid.traineddata" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Delta.png" />
+    <Content Include="Hyatt_KOP.JPG" />
     <Content Include="phototest.tif" />
     <Content Include="x64\liblept171.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

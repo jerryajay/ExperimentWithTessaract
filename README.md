@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tesseract;
+﻿1.	Create a default console application.
+2.	Then, inside the Main function, add the code (you would have to change the path according to the username of your system.):
 
-namespace ExperimentWithTessaract
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\phototest.tif";
-            //var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Hyatt_KOP.JPG";
-            var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\Delta.png";
+var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\phototest.tif";
             if (args.Length > 0)
             {
                 testImagePath = args[0];
@@ -80,6 +67,23 @@ namespace ExperimentWithTessaract
             }
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);
-        }
-    }
-}
+
+
+
+3. Now, copy a .tif/.png/.jpg file from a sample collection into the Project structure. The phototest.tif file is obtainable from a subdirectory of: https://github.com/charlesw/tesseract-samples . 
+4. Make sure you have Tesseract version 3.0.0 installed via the command : Install-Package Tesseract -Version 3.0.0 put inside the Package Manager Console.
+5. Download tessdata: Now, download tessdata 3.04.00 from https://github.com/tesseract-ocr/tessdata/releases/tag/3.04.00 and place the extracted folder inside your project. Rename it to tessdata (rather than tessdata-3.04.00) 
+
+After the 5 steps, things should hopefully work fine. 
+
+
+
+Note: Make sure the version matches, I’m using Tesseract version 3.0.0 and the downloaded tessdata is 3.04.00. If there is a mismatch in version numbers, the code will not work. 
+
+Happy coding!
+
+
+References:
+1. Starting point: https://github.com/charlesw/tesseract/ . Follow this with some modifications according to the points stated above.
+2. Sample source code that is put in the project is available from : https://github.com/charlesw/tesseract-samples
+3. For the error: https://github.com/charlesw/tesseract/wiki/Error-1
