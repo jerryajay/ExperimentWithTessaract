@@ -73,8 +73,9 @@ var testImagePath = "C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\p
 3. Now, copy a .tif/.png/.jpg file from a sample collection into the Project structure. The phototest.tif file is obtainable from a subdirectory of: https://github.com/charlesw/tesseract-samples . 
 4. Make sure you have Tesseract version 3.0.0 installed via the command : Install-Package Tesseract -Version 3.0.0 put inside the Package Manager Console.
 5. Download tessdata: Now, download tessdata 3.04.00 from https://github.com/tesseract-ocr/tessdata/releases/tag/3.04.00 and place the extracted folder inside your project. Rename it to tessdata (rather than tessdata-3.04.00) 
+6. Set the environment variable TESSDATA_PREFIX as the path the parent folder where .\tessdata folder resides. In my project setup, the path points to C:\Users\jerry\source\reposExperimentWithTessaract .
 
-After the 5 steps, things should hopefully work fine. 
+After the 6 steps, things should hopefully work fine. 
 
 
 
