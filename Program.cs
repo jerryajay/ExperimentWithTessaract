@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,54 +27,56 @@ namespace ExperimentWithTessaract
 
             try
             {
-                using (var engine = new TesseractEngine(@"C:\Users\jerry\source\repos\ExperimentWithTessaract\tessdata", "eng", EngineMode.Default))
+                var engine = new TesseractEngine(@"C:\Users\jerry\source\repos\ExperimentWithTessaract\tessdata", "eng", EngineMode.Default);
+                var img = Pix.LoadFromFile(testImagePath);
+                var page = engine.Process(img);
+                var text = page.GetText();
+                Console.WriteLine("Mean confidence: {0}", page.GetMeanConfidence());
+                Console.WriteLine("Text (GetText): \r\n{0}", text);
+                Console.WriteLine("Text (iterator):");
+                string[] lines_to_write_to_file = { };
+                using (StreamWriter file = new StreamWriter(@"C:\\Users\\jerry\\source\\repos\\ExperimentWithTessaract\\test-results.txt", false))
                 {
-                    using (var img = Pix.LoadFromFile(testImagePath))
+                    var iter = page.GetIterator();
+                    iter.Begin();
+                    do
                     {
-                        using (var page = engine.Process(img))
+                        do
                         {
-                            var text = page.GetText();
-                            Console.WriteLine("Mean confidence: {0}", page.GetMeanConfidence());
-
-                            Console.WriteLine("Text (GetText): \r\n{0}", text);
-                            Console.WriteLine("Text (iterator):");
-                            using (var iter = page.GetIterator())
+                            do
                             {
-                                iter.Begin();
-
                                 do
                                 {
-                                    do
+                                    if (iter.IsAtBeginningOf(PageIteratorLevel.Block))
                                     {
-                                        do
-                                        {
-                                            do
-                                            {
-                                                if (iter.IsAtBeginningOf(PageIteratorLevel.Block))
-                                                {
-                                                    Console.WriteLine("<BLOCK>");
-                                                }
+                                        file.WriteLine(" < BLOCK>");
+                                        Console.WriteLine("<BLOCK>");
+                                    }
 
-                                                Console.Write(iter.GetText(PageIteratorLevel.Word));
-                                                Console.Write(" ");
+                                    file.Write(iter.GetText(PageIteratorLevel.Word));
+                                    file.Write(" ");
 
-                                                if (iter.IsAtFinalOf(PageIteratorLevel.TextLine, PageIteratorLevel.Word))
-                                                {
-                                                    Console.WriteLine();
-                                                }
-                                            } while (iter.Next(PageIteratorLevel.TextLine, PageIteratorLevel.Word));
+                                    Console.Write(iter.GetText(PageIteratorLevel.Word));
+                                    Console.Write(" ");
 
-                                            if (iter.IsAtFinalOf(PageIteratorLevel.Para, PageIteratorLevel.TextLine))
-                                            {
-                                                Console.WriteLine();
-                                            }
-                                        } while (iter.Next(PageIteratorLevel.Para, PageIteratorLevel.TextLine));
-                                    } while (iter.Next(PageIteratorLevel.Block, PageIteratorLevel.Para));
-                                } while (iter.Next(PageIteratorLevel.Block));
-                            }
-                        }
-                    }
+                                    if (iter.IsAtFinalOf(PageIteratorLevel.TextLine, PageIteratorLevel.Word))
+                                    {
+                                        file.WriteLine("");
+                                        Console.WriteLine();
+                                    }
+                                } while (iter.Next(PageIteratorLevel.TextLine, PageIteratorLevel.Word));
+
+                                if (iter.IsAtFinalOf(PageIteratorLevel.Para, PageIteratorLevel.TextLine))
+                                {
+                                    file.WriteLine("");
+
+                                    Console.WriteLine();
+                                }
+                            } while (iter.Next(PageIteratorLevel.Para, PageIteratorLevel.TextLine));
+                        } while (iter.Next(PageIteratorLevel.Block, PageIteratorLevel.Para));
+                    } while (iter.Next(PageIteratorLevel.Block));
                 }
+
             }
             catch (Exception e)
             {
@@ -82,6 +85,7 @@ namespace ExperimentWithTessaract
                 Console.WriteLine("Details: ");
                 Console.WriteLine(e.ToString());
             }
+
             Console.Write("Press any key to continue . . . ");
             Console.ReadKey(true);
         }
